@@ -13,6 +13,9 @@ RUN apt update
 RUN apt install -y pv sudo bind9-utils python3-pip bash-completion rsync socat oathtool \
         wget ack automake autoconf nano vim cron mariadb-server
 
+# Custom Additions
+RUN sudo install-php-extensions mysqli
+
 RUN apt install -y python2 && ln -s /usr/bin/python2 /usr/bin/python
 
 ENV NODE_VERSION    10
