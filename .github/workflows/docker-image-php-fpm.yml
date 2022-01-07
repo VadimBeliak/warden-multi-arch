@@ -49,5 +49,5 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/drpayyne/warden-php:${{ github.event.inputs.to }}
-            ghcr.io/drpayyne/warden-php:latest
+            docker.io/vadimbeliak/php-fpm-m1
+            

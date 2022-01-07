@@ -49,8 +49,7 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/drpayyne/warden-php:${{ github.event.inputs.to }}
-            ghcr.io/drpayyne/warden-php:latest
+            ghcr.io/VadimBeliak/php-fpm:latest
   php-m2:
     runs-on: ubuntu-latest
     needs: php
@@ -87,8 +86,8 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/drpayyne/warden-php-m2:${{ github.event.inputs.to }}
-            ghcr.io/drpayyne/warden-php-m2:latest
+            ghcr.io/VadimBeliak/warden-php-m2:${{ github.event.inputs.to }}
+            ghcr.io/VadimBeliak/warden-php-m2:latest
   php-m2-xdebug3:
     runs-on: ubuntu-latest
     needs: [php, php-m2]
@@ -126,5 +125,5 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/drpayyne/warden-php-m2-xdebug3:${{ github.event.inputs.to }}
-            ghcr.io/drpayyne/warden-php-m2-xdebug3:latest
+            ghcr.io/VadimBeliak/warden-php-m2-xdebug3:${{ github.event.inputs.to }}
+            ghcr.io/VadimBeliak/warden-php-m2-xdebug3:latest
