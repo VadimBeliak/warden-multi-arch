@@ -11,19 +11,19 @@
 
 ```bash
 # Make the installation directory
-sudo mkdir /opt/warden
+sudo mkdir /opt/warden-m1
 
 # Set ownership for the installation directory
-sudo chown $(whoami) /opt/warden
+sudo chown $(whoami) /opt/warden-m1
 
 # Clone multi-arch fork of Warden (this repository) into the installation directory
-git clone https://github.com/drpayyne/warden-multi-arch.git /opt/warden
+git clone https://github.com/VadimBeliak/warden-multi-arch.git /opt/warden-m1
 
 # Export Warden to PATH. (use your appropriate shell resource file; zshrc here.)
-echo 'export PATH="/opt/warden/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="/opt/warden-m1/bin:$PATH"' >> ~/.zshrc
 
 # Export Warden to current shell's PATH
-PATH="/opt/warden/bin:$PATH"
+PATH="/opt/warden-m1/bin:$PATH"
 
 # Create and start Warden services
 warden svc up
