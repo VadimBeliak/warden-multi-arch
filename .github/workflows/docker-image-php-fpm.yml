@@ -5,11 +5,11 @@ on:
     inputs:
       from:
         description: "Tag to pull"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
       to:
         description: "Tag to push"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
 
 jobs:
@@ -49,5 +49,6 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            docker.io/vadimbeliak/php-fpm-m1
+            ghcr.io/vadimbeliak/php:${{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php:latest
             

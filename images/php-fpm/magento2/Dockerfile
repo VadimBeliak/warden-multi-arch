@@ -1,5 +1,5 @@
 ARG PHP_TAG
-FROM ghcr.io/drpayyne/warden-php:${PHP_TAG}
+FROM ghcr.io/vadimbeliak/php-fpm:${PHP_TAG}
 
 USER root
 
@@ -26,6 +26,6 @@ RUN set -eux \
     && perl -pi -e 's/^(complete -o default .*)$/$1 n98-magerun/' /etc/bash_completion.d/n98-magerun2.phar.bash
 
 # Create mr alias for n98-magerun
-RUN ln -s /usr/local/bin/n98-magerun /usr/local/bin/mr
+# RUN ln -s /usr/local/bin/n98-magerun /usr/local/bin/mr
 
 USER www-data

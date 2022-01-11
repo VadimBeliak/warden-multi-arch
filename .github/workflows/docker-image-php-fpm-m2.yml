@@ -5,11 +5,11 @@ on:
     inputs:
       from:
         description: "Tag to pull"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
       to:
         description: "Tag to push"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
 
 jobs:

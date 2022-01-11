@@ -1,5 +1,5 @@
 ARG PHP_TAG
-FROM ghcr.io/drpayyne/php-fpm-loaders:${PHP_TAG}-deb 
+FROM ghcr.io/drpayyne/php-fpm-loaders:${PHP_TAG}
 
 # Clear undesired settings from base fpm images
 ENV COMPOSER_ALLOW_SUPERUSER=

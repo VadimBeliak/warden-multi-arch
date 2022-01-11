@@ -5,11 +5,11 @@ on:
     inputs:
       from:
         description: "Tag to pull"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
       to:
         description: "Tag to push"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
 
 jobs:
@@ -49,7 +49,8 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/vadimbeliak/php-fpm:latest
+            ghcr.io/vadimbeliak/php:{{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php:latest
   php-m2:
     runs-on: ubuntu-latest
     needs: php
@@ -86,8 +87,8 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/vadimbeliak/php-fpm-m2:${{ github.event.inputs.to }}
-            ghcr.io/vadimbeliak/php-fpm-m2:latest
+            ghcr.io/vadimbeliak/php-fpm:${{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php-fpm:latest
   php-m2-xdebug3:
     runs-on: ubuntu-latest
     needs: [php, php-m2]
@@ -125,5 +126,5 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/VadimBeliak/warden-php-m2-xdebug3:${{ github.event.inputs.to }}
-            ghcr.io/VadimBeliak/warden-php-m2-xdebug3:latest
+            ghcr.io/vadimbeliak/php-xdebug3:${{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php-xdebug3:latest

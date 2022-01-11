@@ -5,11 +5,11 @@ on:
     inputs:
       from:
         description: "Tag to pull"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
       to:
         description: "Tag to push"
-        default: '7.4-deb'
+        default: '7.3-deb'
         required: true
 
 jobs:
@@ -49,5 +49,5 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/drpayyne/warden-php-m2-xdebug3:${{ github.event.inputs.to }}
-            ghcr.io/drpayyne/warden-php-m2-xdebug3:latest
+            ghcr.io/vadimbeliak/php-xdebug3:${{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php-xdebug3:latest
