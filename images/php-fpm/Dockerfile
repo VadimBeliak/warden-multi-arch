@@ -1,5 +1,5 @@
 ARG PHP_TAG
-FROM ghcr.io/drpayyne/php-fpm-loaders:${PHP_TAG}
+FROM ghcr.io/drpayyne/php-fpm-loaders:${PHP_TAG}-deb 
 
 # Clear undesired settings from base fpm images
 ENV COMPOSER_ALLOW_SUPERUSER=
@@ -12,11 +12,10 @@ RUN apt update
 
 RUN apt install -y pv sudo bind9-utils python3-pip bash-completion rsync socat oathtool \
         wget ack automake autoconf nano vim cron mariadb-server
+RUN apt install -y python2 && ln -s /usr/bin/python2 /usr/bin/python
 
 # Custom Additions
 RUN install-php-extensions mysqli
-
-RUN apt install -y python2 && ln -s /usr/bin/python2 /usr/bin/python
 
 ENV NODE_VERSION    10
 RUN npm install -g n \
@@ -35,12 +34,16 @@ RUN cat /usr/local/etc/php/conf.d/opcache-config >> /usr/local/etc/php/conf.d/do
 
 ARG TARGETARCH
 
+# Custom Additions
+RUN mkdir /var/log/punchout \
+    && chown www-data:www-data /var/log/punchout
+
 # Install mhsendmail to support routing email through mailhog
-RUN mkdir -p /tmp/mhsendmail \
-    && cd /tmp/mhsendmail \
-    && curl -vLOs https://github.com/drpayyne/mhsendmail/releases/download/v0.3.0/mhsendmail_linux_$TARGETARCH \
-    && chmod +x mhsendmail_linux_$TARGETARCH \
-    && mv mhsendmail_linux_$TARGETARCH /usr/local/bin/mhsendmail
+# RUN mkdir -p /tmp/mhsendmail \
+#     && cd /tmp/mhsendmail \
+#     && curl -vLOs https://github.com/drpayyne/mhsendmail/releases/download/v0.3.0/mhsendmail_linux_$TARGETARCH \
+#     && chmod +x mhsendmail_linux_$TARGETARCH \
+#     && mv mhsendmail_linux_$TARGETARCH /usr/local/bin/mhsendmail
 
 # Install awscli to support data backfill workflows using S3 storage; segno for QR code generation
 RUN pip3 install awscli segno --no-cache-dir
