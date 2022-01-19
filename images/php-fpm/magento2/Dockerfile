@@ -1,5 +1,5 @@
 ARG PHP_TAG
-FROM ghcr.io/vadimbeliak/php-m2:${PHP_TAG}
+FROM ghcr.io/vadimbeliak/php:${PHP_TAG}
 
 USER root
 
