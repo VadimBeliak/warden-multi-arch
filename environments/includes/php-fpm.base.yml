@@ -18,7 +18,7 @@ services:
 
   php-fpm:
     hostname: "${WARDEN_ENV_NAME}-php-fpm"
-    image: ghcr.io/vadimbeliak/php-fpm:${PHP_VERSION}
+    image: ghcr.io/vadimbeliak/php:${PHP_VERSION}-deb
     environment:
       - TRAEFIK_DOMAIN
       - TRAEFIK_SUBDOMAIN
