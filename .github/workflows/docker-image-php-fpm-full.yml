@@ -49,7 +49,7 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/vadimbeliak/php:{{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php:${{ github.event.inputs.to }}
             ghcr.io/vadimbeliak/php:latest
   php-m2:
     runs-on: ubuntu-latest
