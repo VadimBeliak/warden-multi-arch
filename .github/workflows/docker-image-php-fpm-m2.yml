@@ -48,5 +48,5 @@ jobs:
           build-args: |
             PHP_TAG=${{ github.event.inputs.from }}
           tags: |
-            ghcr.io/vadimbeliak/php:${{ github.event.inputs.to }}
-            ghcr.io/vadimbeliak/php:latest
+            ghcr.io/vadimbeliak/php-m2:${{ github.event.inputs.to }}
+            ghcr.io/vadimbeliak/php-m2:latest

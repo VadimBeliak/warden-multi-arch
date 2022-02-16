@@ -1,5 +1,5 @@
 ARG PHP_TAG
-FROM ghcr.io/drpayyne/php-fpm-loaders:${PHP_TAG}
+FROM ghcr.io/vadimbeliak/php-fpm-loaders:${PHP_TAG}
 
 # Clear undesired settings from base fpm images
 ENV COMPOSER_ALLOW_SUPERUSER=
@@ -21,6 +21,8 @@ ENV NODE_VERSION    10
 RUN npm install -g n \
     && n install ${NODE_VERSION} \
     && rm -rf /usr/local/n/versions/node
+
+RUN npm install -g grunt-cli gulp yarn
 
 COPY docker-entrypoint /usr/local/bin/
 COPY etc/profile.d/*.sh /etc/profile.d/
