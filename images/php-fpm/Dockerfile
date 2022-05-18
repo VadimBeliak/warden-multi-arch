@@ -1,5 +1,7 @@
 ARG PHP_TAG
-FROM ghcr.io/vadimbeliak/php-fpm-loaders:${PHP_TAG}
+ARG WITH_LOADERS
+
+FROM ghcr.io/drpayyne/php-fpm${WITH_LOADERS}:${PHP_TAG}
 
 # Clear undesired settings from base fpm images
 ENV COMPOSER_ALLOW_SUPERUSER=
@@ -8,11 +10,12 @@ ENV COMPOSER_HOME=
 ENV MAILHOG_HOST    mailhog
 ENV MAILHOG_PORT    1025
 
-RUN apt update
-
-RUN apt install -y pv sudo bind9-utils python3-pip bash-completion rsync socat oathtool \
-        wget ack automake autoconf nano vim cron mariadb-server
-RUN apt install -y python2 && ln -s /usr/bin/python2 /usr/bin/python
+RUN set -eux; \
+    apt-get update -y; \
+    apt-get install -y --no-install-recommends pv sudo bind9-utils python3-pip bash-completion rsync socat oathtool \
+        wget ack automake autoconf nano vim cron mariadb-client python2; \
+    ln -s /usr/bin/python2 /usr/bin/python; \
+    rm -rf /var/lib/apt/lists/*
 
 # Custom Additions
 RUN install-php-extensions mysqli
@@ -51,7 +54,10 @@ RUN mkdir /var/log/punchout \
 RUN pip3 install awscli segno --no-cache-dir
 
 # Configure www-data user as primary php-fpm user for better local dev experience
-RUN chmod 0755 ~www-data \
+RUN mkdir -p /home/www-data \
+    && chown www-data:www-data /home/www-data \
+    && usermod -d /home/www-data www-data \
+    && chmod 0755 ~www-data \
     && mkdir -p /var/www/html \
     && chown www-data:www-data /var/www/html \
     && echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd \
