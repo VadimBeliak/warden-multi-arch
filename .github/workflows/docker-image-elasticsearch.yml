@@ -39,6 +39,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            vadimbeliak/warden-elasticsearch:${{ matrix.version }}
-            ghcr.io/vadimbeliak/warden-elasticsearch:${{ matrix.version }}
-            ghcr.io/vadimbeliak/warden-elasticsearch:latest
+            vadimbeliak/elasticsearch:${{ matrix.version }}
+            ghcr.io/vadimbeliak/elasticsearch:${{ matrix.version }}
+            ghcr.io/vadimbeliak/elasticsearch:latest
