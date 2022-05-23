@@ -6,7 +6,7 @@ jobs:
   docker:
     strategy:
       matrix:
-        version: ["7.9", "7.10", "7.13", "7.16"]
+        version: ["7.16"]
     runs-on: ubuntu-latest
     steps:
       -
